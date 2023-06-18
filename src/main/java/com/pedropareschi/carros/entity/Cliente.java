@@ -5,44 +5,46 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.Hibernate;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Objects;
+
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Carro {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
-    private String modelo;
+    @Column(length = 100)
+    private String nome;
+
     @NotNull
-    @Pattern(regexp = "[A-Z]{3}[0-9]{1}[A-Z0-9]{1}[0-9]{2}")
-    private String placa;
-    private Double valor;
+    @CPF
+    private String cpf;
+
     @NotNull
     @Temporal(TemporalType.DATE)
-    private Date data;
-
+    private Date dataDeNascimento;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Carro carro = (Carro) o;
-        return id != null && Objects.equals(id, carro.id);
+        if (!(o instanceof Cliente)) return false;
+        Cliente cliente = (Cliente) o;
+        return id.equals(cliente.id) && nome.equals(cliente.nome) && cpf.equals(cliente.cpf) && dataDeNascimento.equals(cliente.dataDeNascimento);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(id, nome, cpf, dataDeNascimento);
     }
 }
