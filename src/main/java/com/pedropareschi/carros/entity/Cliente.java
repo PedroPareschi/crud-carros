@@ -1,13 +1,13 @@
 package com.pedropareschi.carros.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,21 +17,21 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "cpf"))
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Column(length = 100)
     private String nome;
 
-    @NotNull
+    @NotBlank
     @CPF
     private String cpf;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dataDeNascimento;
 

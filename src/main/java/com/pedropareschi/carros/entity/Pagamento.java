@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -20,16 +20,16 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @ManyToOne
     private Agendamento agendamento;
 
-    @NotNull
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @NotNull
+    @NotBlank
     @Enumerated(EnumType.STRING)
     private FormaDePagamento formaDePagamento;
 

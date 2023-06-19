@@ -2,19 +2,17 @@ package com.pedropareschi.carros.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Agendamento {
 
@@ -36,14 +34,20 @@ public class Agendamento {
     private List<Pagamento> pagamentos;
 
     @Column
-    @NotNull
+    @NotBlank
     @Temporal(TemporalType.DATE)
-    private Date dataInicio;
+    private Date dataInicial;
 
     @Column
-    @NotNull
+    @NotBlank
     @Temporal(TemporalType.DATE)
     private Date dataFinal;
 
-
+    public Agendamento(Cliente cliente, Carro carro, Date dataInicial, Date dataFinal) {
+        this.id = new AgendamentoPK(cliente.getId(), carro.getId());
+        this.cliente = cliente;
+        this.carro = carro;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+    }
 }

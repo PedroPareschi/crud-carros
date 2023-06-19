@@ -1,13 +1,13 @@
 package com.pedropareschi.carros.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Objects;
@@ -22,13 +22,13 @@ public class Carro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotBlank
     private String modelo;
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "[A-Z]{3}[0-9]{1}[A-Z0-9]{1}[0-9]{2}")
     private String placa;
     private Double valor;
-    @NotNull
+    @NotBlank
     @Temporal(TemporalType.DATE)
     private Date data;
 
