@@ -1,6 +1,5 @@
 package com.pedropareschi.carros.entity.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
@@ -14,5 +13,17 @@ public enum FormaDePagamento {
     FormaDePagamento(Integer codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
+    }
+
+    public static FormaDePagamento toEnum(Integer cod){
+        if(cod == null){
+            return null;
+        }
+        for(FormaDePagamento formaDePagamento : FormaDePagamento.values()){
+            if(cod.equals(formaDePagamento.getCodigo())){
+                return formaDePagamento;
+            }
+        }
+        throw new IllegalArgumentException("Id invalido: " + cod);
     }
 }

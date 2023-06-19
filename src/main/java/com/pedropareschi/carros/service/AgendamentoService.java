@@ -22,4 +22,8 @@ public class AgendamentoService {
         Agendamento agendamento = new Agendamento(cliente, carro, dataInicial, dataFinal);
         return repository.save(agendamento);
     }
+
+    public Agendamento findByCarroAndCliente(Carro carro, Cliente cliente){
+        return repository.findByCarroAndCliente(carro, cliente).orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+    }
 }

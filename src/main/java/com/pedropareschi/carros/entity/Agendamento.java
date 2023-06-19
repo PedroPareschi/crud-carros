@@ -31,6 +31,7 @@ public class Agendamento {
     private Carro carro;
 
     @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Pagamento> pagamentos;
 
     @Column
