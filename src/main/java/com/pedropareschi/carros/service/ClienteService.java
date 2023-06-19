@@ -20,4 +20,8 @@ public class ClienteService {
     public Cliente getById(Long id){
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Erro não encontrado"));
     }
+
+    public Cliente getByCpf(String cpf){
+        return repository.findByCpf(cpf).orElseThrow(() -> new RuntimeException("CPF não encontrado"));
+    }
 }
