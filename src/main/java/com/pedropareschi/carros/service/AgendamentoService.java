@@ -1,5 +1,6 @@
 package com.pedropareschi.carros.service;
 
+import com.pedropareschi.carros.dtos.AgendamentoDTO;
 import com.pedropareschi.carros.entity.Agendamento;
 import com.pedropareschi.carros.entity.Carro;
 import com.pedropareschi.carros.entity.Cliente;
@@ -25,5 +26,12 @@ public class AgendamentoService {
 
     public Agendamento findByCarroAndCliente(Carro carro, Cliente cliente){
         return repository.findByCarroAndCliente(carro, cliente).orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+    }
+
+    public Agendamento updateAgendamento(AgendamentoDTO agendamentoDTO){
+        Carro carro = carroService.getById(agendamentoDTO.getCarroId());
+        Cliente cliente = clienteService.getById(agendamentoDTO.getClienteId());
+        Agendamento agendamento = findByCarroAndCliente(carro, cliente);
+        return repository.save(agendamento);
     }
 }

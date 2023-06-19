@@ -1,13 +1,14 @@
 package com.pedropareschi.carros.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public class Carro {
     @Pattern(regexp = "[A-Z]{3}[0-9]{1}[A-Z0-9]{1}[0-9]{2}")
     private String placa;
     private Double valor;
-    @NotBlank
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date data;
 

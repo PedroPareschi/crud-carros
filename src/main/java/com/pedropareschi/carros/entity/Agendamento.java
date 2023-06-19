@@ -1,12 +1,13 @@
 package com.pedropareschi.carros.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -35,12 +36,12 @@ public class Agendamento {
     private List<Pagamento> pagamentos;
 
     @Column
-    @NotBlank
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dataInicial;
 
     @Column
-    @NotBlank
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dataFinal;
 

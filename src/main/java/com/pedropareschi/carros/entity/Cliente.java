@@ -1,13 +1,14 @@
 package com.pedropareschi.carros.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.Objects;
 
@@ -34,6 +35,9 @@ public class Cliente {
 
     @Temporal(TemporalType.DATE)
     private Date dataDeNascimento;
+
+    @NotBlank
+    private String senha;
 
     @Override
     public boolean equals(Object o) {

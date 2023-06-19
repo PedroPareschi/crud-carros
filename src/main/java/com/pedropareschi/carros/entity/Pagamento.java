@@ -1,13 +1,14 @@
 package com.pedropareschi.carros.entity;
 
 import com.pedropareschi.carros.entity.enums.FormaDePagamento;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -20,16 +21,14 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @ManyToOne
     private Agendamento agendamento;
 
-    @NotBlank
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private FormaDePagamento formaDePagamento;
 
